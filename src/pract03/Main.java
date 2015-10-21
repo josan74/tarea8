@@ -1,4 +1,4 @@
-package eje03;
+package pract03;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 

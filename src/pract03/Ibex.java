@@ -1,4 +1,4 @@
-package eje03;
+package pract03;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,9 +13,12 @@ import java.util.StringTokenizer;
 
 /**
  * 
- * @author Carlos Tessier
- *
- */
+ *  @descrition Ejercicio 03
+ *  @author Carlos Tessier
+ *  @date 21/10/2015
+ *  @version 1.0
+ *  @license GPLv3
+*/
 
 public class Ibex {
 
