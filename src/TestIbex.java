@@ -28,7 +28,23 @@ public class TestIbex {
 	@Test
 	public void testFechaNull(){
 		float resultado= -1;
-		assertEquals(resultado, Ibex.getCloseValue(null, ruta ),0.0001);
+		assertEquals(resultado, Ibex.getCloseValue(null ),0.0001);
+
+	}
+	
+	@Test
+	public void testFechaExiste(){
+		float resultado= 11206.6f;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String sFecha = "20000104";
+		Date dFecha = null;
+		try {
+			dFecha = sdf.parse(sFecha);
+		} catch (ParseException e) {
+			
+		}
+		assertEquals(resultado, 
+				Ibex.getCloseValue(dFecha),0.1);
 
 	}
 	
