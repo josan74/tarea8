@@ -5,8 +5,8 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 /**
- *  @descrition Solución Ejercicio 1
- *	@author Carlos
+ *  @descrition Ejercicio 01 parte 2
+ *  @author Carlos
  *  @date 21/10/2015
  *  @version 1.0
  *  @license GPLv3
@@ -17,19 +17,19 @@ public class Parte03 {
 	final static String RUTA = "./entrada.txt";
 
 	/*
-	 * Para ejecutar Botón derecho --> Run as --> Run Configurations --> En
+	 * Para ejecutar BotÃ³n derecho --> Run as --> Run Configurations --> En
 	 * argumentos escribir entrada.txt. Es necesario para probar toAbsolutePath
 	 */
 	public static void main(String[] args) {
 
-		// Primer método toUri
+		// Primer mÃ©todo toUri
 		Path p1 = Paths.get(FICHERO);
 
 		System.out.println("URI " + p1.toUri());	
 
 		// -------------------------------------------------------------------------------
 
-		// Segundo método toAbsolutePath
+		// Segundo mÃ©todo toAbsolutePath
 
 		if (args.length < 1) {
 			System.out
@@ -44,7 +44,7 @@ public class Parte03 {
 
 		// -------------------------------------------------------------------------------
 
-		// Tercer método toRealPath
+		// Tercer mÃ©todo toRealPath
 
 		Path p2 = Paths.get(RUTA);
 		try {
