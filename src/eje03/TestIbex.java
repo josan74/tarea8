@@ -1,3 +1,4 @@
+package eje03;
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
@@ -9,11 +10,10 @@ import org.junit.Test;
 
 public class TestIbex {
 	
-	final static String ruta = "./fichero.csv";
 
 	@Test
 	public void testFechaNoExiste() {
-		Float resultado = 0.0f;
+		float resultado = 0.0f;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String sFecha = "00000000";
 		Date dFecha = null;
@@ -22,15 +22,17 @@ public class TestIbex {
 		} catch (ParseException e) {
 			
 		}
-		assertEquals(resultado, Ibex.getCloseValue(dFecha, ruta ),0.0001);
+		assertEquals(resultado, Ibex.getCloseValue(dFecha ), 0.1f);
 	}
 	
 	@Test
 	public void testFechaNull(){
 		float resultado= -1;
-		assertEquals(resultado, Ibex.getCloseValue(null ),0.0001);
+		assertEquals(resultado, Ibex.getCloseValue(null ),0.1f);
 
 	}
+	
+
 	
 	@Test
 	public void testFechaExiste(){
@@ -44,7 +46,7 @@ public class TestIbex {
 			
 		}
 		assertEquals(resultado, 
-				Ibex.getCloseValue(dFecha),0.1);
+				Ibex.getCloseValue(dFecha),0.1f);
 
 	}
 	
