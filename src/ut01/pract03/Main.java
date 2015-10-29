@@ -1,4 +1,4 @@
-package pract03;
+package ut01.pract03;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 

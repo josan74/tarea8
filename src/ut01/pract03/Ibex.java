@@ -1,4 +1,5 @@
-package pract03;
+package ut01.pract03;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,17 +14,18 @@ import java.util.StringTokenizer;
 
 /**
  * 
- *  @descrition Ejercicio 03
- *  @author Carlos Tessier
- *  @date 21/10/2015
- *  @version 1.0
- *  @license GPLv3
-*/
+ * @descrition Ejercicio 03
+ * @author Carlos Tessier
+ * @date 21/10/2015
+ * @version 1.0
+ * @license GPLv3
+ */
 
 public class Ibex {
 
 	public static final int CAMPO_FECHA = 2;
 	public static final int CAMPO_CLOSE = 7;
+	public static final int TAM_A—O = 4;
 
 	final static String RUTA = "res/bolsa.csv";
 
@@ -47,9 +49,10 @@ public class Ibex {
 		Path ruta = Paths.get(path);
 		float close = 0.0f;
 		String sFecha = dateToString(fecha);
-		
-		if(sFecha==null) return -1;
-		
+
+		if (sFecha == null)
+			return -1;
+
 		// Utilizo el paquete nio de Java y un try with resources
 		// para cerrarlo autom√°ticamente
 		try (BufferedReader br = Files.newBufferedReader(ruta)) {
@@ -71,7 +74,7 @@ public class Ibex {
 			}
 
 		} catch (IOException e) {
-			System.err.println("Error E/S con "+sFecha);
+			System.err.println("Error E/S con " + sFecha);
 			close = -1;
 		}
 
@@ -79,17 +82,53 @@ public class Ibex {
 
 	}
 
-	private static String dateToString(Date fecha) {
-		String sFecha =  null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		try{
-			sFecha = sdf.format(fecha);
+	static float getCloseValue(int year, String path) {
+
+		float closeValue = 0.0f;
+
+		Path ruta = Paths.get(path);
+
+		String record;
+
+		String sYear = Integer.toString(year);
+
+		int numYears = 0;
+
+		try (BufferedReader br = Files.newBufferedReader(ruta)) {
+
+			while ((record = br.readLine()) != null) {
+
+				String[] campos = record.split(",");
+				String sReadYear = campos[CAMPO_FECHA].substring(0, TAM_A—O);
+
+				if (sYear.equals(sReadYear)) {
+
+					numYears++;
+					closeValue += Float.parseFloat(campos[CAMPO_CLOSE]);
+
+				}
+			}
+
+			if (numYears != 0)
+				closeValue = closeValue / numYears;
+
+		} catch (IOException e) {
+			closeValue = -1;
 		}
-		catch(Exception e){
+
+		return closeValue;
+	}
+
+	private static String dateToString(Date fecha) {
+		String sFecha = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		try {
+			sFecha = sdf.format(fecha);
+		} catch (Exception e) {
 		}
 		return sFecha;
 	}
-	
+
 	/**
 	 * M√©todo que me obtiene los campos de un registro csv
 	 * 

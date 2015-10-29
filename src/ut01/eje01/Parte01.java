@@ -1,4 +1,4 @@
-package eje01;
+package ut01.eje01;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

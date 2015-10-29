@@ -1,4 +1,4 @@
-package eje01;
+package ut01.eje01;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
