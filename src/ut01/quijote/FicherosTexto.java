@@ -12,15 +12,7 @@ import java.util.Map;
 
 public class FicherosTexto implements InterfazFicherosTexto {
 
-	/**
-	 * Utilizando el fichero quijote.txt que contiene letras mayúsculas y
-	 * minúsculas, con o sin acento o diéresis, cifras y demás caracteres
-	 * imprimibles posibles, además de fines de línea y fin de fichero. 
-	 * Crear un método que devuelva el número de carácteres:
-	 * 
-	 * @param path
-	 * @return
-	 */
+
 	@Override
     public long countChars(String path) {
 		
@@ -29,7 +21,6 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		try(FileReader fr = new FileReader(path))
 		{
 			while( (letter=fr.read())!=-1){
-				if(Character.isAlphabetic(letter))
 					++numberChars;
 			}
 		} catch (IOException e) {
@@ -58,8 +49,19 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public long countAlphabeticChars(String path) {
-		// TODO Auto-generated method stub
-		return 0;
+		long numberLowChars = 0;
+		int letter;
+		try(FileReader fr = new FileReader(path))
+		{
+			while( (letter=fr.read())!=-1){
+				if(Character.isLetter(letter))
+					++numberLowChars;
+			}
+		} catch (IOException e) {
+			
+		}
+
+		return numberLowChars;
 	}
 
 	@Override
