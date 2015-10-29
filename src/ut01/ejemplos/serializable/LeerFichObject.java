@@ -12,10 +12,9 @@ public class LeerFichObject {
 		Path path = Paths.get("res/FichPersona.dat");
 		Persona persona = null; //defino variable persona		
 		
-		ObjectInputStream dataIS = null;			
 		// Conecto el flujo de bytes al flujo de datos con un try with resources
-		try(InputStream in = Files.newInputStream(path)){
-			dataIS = new ObjectInputStream(in);	
+		try(ObjectInputStream dataIS = new ObjectInputStream(Files.newInputStream(path))){
+				
 			persona = (Persona) dataIS.readObject(); //leo la primera Persona
 			while (persona != null) {		           		  
 			System.out.println("Nombre: "+ persona.getNombre()+" ,edad "+persona.getEdad());

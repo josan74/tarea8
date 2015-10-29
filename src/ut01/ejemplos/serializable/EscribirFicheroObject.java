@@ -19,10 +19,8 @@ public class EscribirFicheroObject {
 		int edades[] = {23,21,25,27,25,31};
 		
 		//Crea el flujo de salida
-		try (OutputStream fileout =  Files.newOutputStream(path)){
-			
-			// Conecto el flujo de bytes al flujo de datos
-			ObjectOutputStream dataOS = new ObjectOutputStream(fileout);			
+		try (ObjectOutputStream dataOS = new ObjectOutputStream(Files.newOutputStream(path))  ){			
+				
 			for (int i=0;i<edades.length; i++) { // recorremos los arrays)
 				persona = new Persona(nombre[i],edades[i]); // creo el restaurante
 				dataOS.writeObject(persona); //escribo restaurante en el fichero		
