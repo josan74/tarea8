@@ -14,7 +14,7 @@ public interface InterfazFicherosTexto {
 	 * @param path
 	 * @return
 	 */
-	abstract long countUTFChars(String path);
+	abstract long countChars(String path);
 
 	/**
 	 * Contar el número de letras minúsculas puras (sin acentuar ni diéresis)
@@ -32,7 +32,7 @@ public interface InterfazFicherosTexto {
 	 * @param path
 	 * @return
 	 */
-	long countAsciiChars(String path);
+	long countAlphabeticChars(String path);
 
 	/**
 	 * Contar el número de líneas del fichero de texto.

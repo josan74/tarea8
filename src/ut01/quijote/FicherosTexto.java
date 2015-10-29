@@ -22,14 +22,14 @@ public class FicherosTexto implements InterfazFicherosTexto {
 	 * @return
 	 */
 	@Override
-    public long countUTFChars(String path) {
+    public long countChars(String path) {
 		
 		long numberChars = 0;
 		int letter;
 		try(FileReader fr = new FileReader(path))
 		{
 			while( (letter=fr.read())!=-1){
-				if(Character.isAlphabetic((char)letter))
+				if(Character.isAlphabetic(letter))
 					++numberChars;
 			}
 		} catch (IOException e) {
@@ -41,12 +41,23 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public long countLowCaseChars(String path) {
-		// TODO Auto-generated method stub
-		return 0;
+		long numberLowChars = 0;
+		int letter;
+		try(FileReader fr = new FileReader(path))
+		{
+			while( (letter=fr.read())!=-1){
+				if(Character.isAlphabetic(letter) & Character.isLowerCase(letter))
+					++numberLowChars;
+			}
+		} catch (IOException e) {
+			
+		}
+
+		return numberLowChars;
 	}
 
 	@Override
-	public long countAsciiChars(String path) {
+	public long countAlphabeticChars(String path) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
