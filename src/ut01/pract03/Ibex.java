@@ -1,9 +1,8 @@
 package ut01.pract03;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -55,7 +54,7 @@ public class Ibex {
 
 		// Utilizo el paquete nio de Java y un try with resources
 		// para cerrarlo automáticamente
-		try (BufferedReader br = Files.newBufferedReader(ruta)) {
+		try (BufferedReader br = Files.newBufferedReader(ruta,Charset.forName("UTF-8"))) {
 			// BufferedReader br = new BufferedReader (new FileReader(path));
 
 			while ((record = br.readLine()) != null) {
@@ -87,14 +86,11 @@ public class Ibex {
 		float closeValue = 0.0f;
 
 		Path ruta = Paths.get(path);
-
 		String record;
-
 		String sYear = Integer.toString(year);
-
 		int numYears = 0;
 
-		try (BufferedReader br = Files.newBufferedReader(ruta)) {
+		try (BufferedReader br = Files.newBufferedReader(ruta,Charset.forName("UTF-8"))) {
 
 			while ((record = br.readLine()) != null) {
 
