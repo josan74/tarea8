@@ -81,12 +81,13 @@ public class FicherosTexto implements InterfazFicherosTexto {
 		try(FileReader fr = new FileReader(path)){
 			while( (caracter = fr.read())!=-1 ){
 				if(Character.isAlphabetic(caracter)){
+					// leo un caracter que pertenece a una palabra
 					palabra.append((char)caracter);
 				}
+				// termino de leer la palabra
 				else if(palabra.length()>0){
-					System.out.println("-"+palabra.toString());
-					palabra = new StringBuilder();
 					++wordNumber;
+					palabra = new StringBuilder();
 				}
 			}	
 			
@@ -113,8 +114,32 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public String longestWords(String path) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder palabra = new StringBuilder();
+		int caracter;
+		String longestWord = "";
+		try(FileReader fr = new FileReader(path)){
+			while( (caracter = fr.read())!=-1 ){
+				if(Character.isAlphabetic(caracter)){
+					palabra.append((char)caracter);
+				}
+				else if(palabra.length()>0){
+					if(longestWord.length() < 
+							palabra.toString().length()){
+						longestWord = palabra.toString();
+					}
+						
+					palabra = new StringBuilder();
+				}
+			}	
+			
+		} catch (FileNotFoundException e) {
+			System.err.println("File not found");
+		} catch (IOException e) {
+			System.err.println("IOException");
+		}
+		
+		
+		return longestWord;
 	}
 
 	@Override
