@@ -1,6 +1,7 @@
 package ut01.quijote;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -72,13 +73,35 @@ public class FicherosTexto implements InterfazFicherosTexto {
 
 	@Override
 	public long countWords(String path) {
-		// TODO Auto-generated method stub
-		return 0;
+		// Leer el fichero de path caracter a caracter
+		
+		StringBuilder palabra = new StringBuilder();
+		int caracter;
+		int wordNumber = 0;
+		try(FileReader fr = new FileReader(path)){
+			while( (caracter = fr.read())!=-1 ){
+				if(Character.isAlphabetic(caracter)){
+					palabra.append((char)caracter);
+				}
+				else if(palabra.length()>0){
+					System.out.println("-"+palabra.toString());
+					palabra = new StringBuilder();
+					++wordNumber;
+				}
+			}	
+			
+		} catch (FileNotFoundException e) {
+			System.err.println("File not found");
+		} catch (IOException e) {
+			System.err.println("IOException");
+		}
+		
+		return wordNumber;
 	}
 
 	@Override
 	public int countWords(String path, String endText) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

@@ -8,6 +8,7 @@ import org.junit.Test;
 public class TestQuijote {
 
 	final static String fichero = "res/pruebas.txt";
+	final static String ficheroP = "res/palabras.txt";
 
 	
 	@Test
@@ -21,6 +22,13 @@ public class TestQuijote {
 	public void countAlphabeticChars() {
 		long actual = new FicherosTexto().countAlphabeticChars(fichero);
 		long expected = 5;
+		assertTrue(actual==expected);
+	}
+	
+	@Test
+	public void countWords() {
+		long actual = new FicherosTexto().countWords(ficheroP);
+		long expected = 3;
 		assertTrue(actual==expected);
 	}
 
