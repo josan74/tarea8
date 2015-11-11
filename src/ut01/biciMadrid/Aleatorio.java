@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Aleatorio implements InterfaceRandom {
 
-	final static int RECORD_BIKE = 16; // dos int y dos boolean
+	final static int RECORD_BIKE = 10; // dos int (4) y dos boolean (1)
 	final static int MAX_BIKES = 500; // dos int y dos boolean
 
 	public void loadBikeCSV(Path bikeRandomFile) {
@@ -111,7 +111,10 @@ public class Aleatorio implements InterfaceRandom {
 
 		try (RandomAccessFile raf = new RandomAccessFile(bikeRandomFile.toFile(), "r")) {
 			while (raf.getFilePointer() < raf.length()) {
-				Bike bici = new Bike(raf.readInt(), raf.readBoolean(), raf.readBoolean(), raf.readInt());
+				Bike bici = new Bike(raf.readInt(), 
+						raf.readBoolean(),
+						raf.readBoolean(), 
+						raf.readInt());
 				bicis.add(bici);
 			}
 
