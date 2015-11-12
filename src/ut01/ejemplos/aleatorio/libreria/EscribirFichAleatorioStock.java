@@ -76,7 +76,7 @@ public class EscribirFichAleatorioStock {
 			fileT.readLine();
 			while ((linea = fileT.readLine()) != null) { // se va leyendo un
 
-				Stock oStock = readStringStock(linea, ";");
+				Libro oStock = readStringStock(linea, ";");
 
 				posicion = (hash(oStock.getBookId())) * TAMREG; // calculamos la
 
@@ -88,13 +88,13 @@ public class EscribirFichAleatorioStock {
 					if (libre == 0) {
 						fileA.seek(posicion);
 
-						System.out.println(oStock);
 						writeStock(fileA, oStock);
 
-					} else
+					} else{
 						System.out.println("colision!");
+					    System.out.println(oStock);
 					    writeStockColision(fileC,oStock);
-					
+					}
 
 				} else {
 					System.out.format("Error en el puntero %d ",hash(oStock.getBookId()));
@@ -118,11 +118,11 @@ public class EscribirFichAleatorioStock {
 		}
 	}
 
-	private static void writeStockColision(ObjectOutputStream fileC, Stock oStock) throws IOException {
+	private static void writeStockColision(ObjectOutputStream fileC, Libro oStock) throws IOException {
 		fileC.writeObject(oStock);
 	}
 
-	private static void writeStock(RandomAccessFile fileA, Stock oStock) throws IOException {
+	private static void writeStock(RandomAccessFile fileA, Libro oStock) throws IOException {
 		StringBuffer buffer = null;
 
 		fileA.writeInt(oStock.getBookId());
@@ -135,7 +135,7 @@ public class EscribirFichAleatorioStock {
 		fileA.writeInt(oStock.getStock());
 	}
 
-	private static Stock readStringStock(String linea, String string) {
+	private static Libro readStringStock(String linea, String string) {
 		StringTokenizer tokens = new StringTokenizer(linea, ";");
 
 		int bookId;
@@ -144,7 +144,7 @@ public class EscribirFichAleatorioStock {
 		int year;
 		int fkPublisher;
 		int stock;
-		Stock oStock = new Stock();
+		Libro oStock = new Libro();
 
 		try {
 			bookId = Integer.parseInt(tokens.nextToken());
@@ -153,7 +153,7 @@ public class EscribirFichAleatorioStock {
 			fkPublisher = Integer.parseInt(tokens.nextToken());
 			year = Integer.parseInt(tokens.nextToken());
 			stock = Integer.parseInt(tokens.nextToken());
-			oStock = new Stock(bookId, title, fkAuthor, year, fkPublisher, stock);
+			oStock = new Libro(bookId, title, fkAuthor, year, fkPublisher, stock);
 
 		} catch (Exception e) {
 
@@ -169,7 +169,8 @@ public class EscribirFichAleatorioStock {
 
 		if (new File(ficheroAle).exists())
 			new File(ficheroAle).delete();
-
+		if (new File(ficheroColAle).exists())
+			new File(ficheroColAle).delete();
 		crear(ficheroAle, MAX_LIBROS);
 
 		escribir(ficheroAle,ficheroColAle, fichero);

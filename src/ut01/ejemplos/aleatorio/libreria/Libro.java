@@ -2,7 +2,7 @@ package ut01.ejemplos.aleatorio.libreria;
 
 import java.io.Serializable;
 
-public class Stock implements Serializable{
+public class Libro implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -13,9 +13,9 @@ public class Stock implements Serializable{
 	private int fkPublisher;
 	private int stock;
 	
-	Stock(){}
+	Libro(){}
 	
-	Stock(int bookId , String title, int fkAuthor, int year, int fkPublisher, int stock){
+	Libro(int bookId , String title, int fkAuthor, int year, int fkPublisher, int stock){
 		
 	this.bookId = bookId;
 	this.title =  title;
