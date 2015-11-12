@@ -2,24 +2,13 @@ package ut01.biciMadrid;
 
 import java.nio.file.Path;
 
-public interface InterfaceRandom {
+public interface InterfaceRandomUser {
 	
     
-	void loadBikeCSV(Path csvBikeFile, Path bikeRandomFile);
 	
 	void loadUserCSV(Path csvUserFile, Path userRandomFile);
 
 
-	public  Bike getBike(int key, Path bikeRandomFile);
-	
-	public void saveBike(Bike bici, Path bikeRandomFile);
-	
-	public Bike deleteBike(int key, Path bikeRandomFile);
-
-	public Bike modifyBike(Bike bici, Path bikeRandomFile);
-	
-	public java.util.ArrayList<Bike> getAllBikes(Path bikeRandomFile);
-	
     public  User getUser(String dni, Path userRandomFile);
 	
 	public void saveUser(User user, Path userRandomFile);

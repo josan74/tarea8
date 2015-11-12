@@ -32,7 +32,7 @@ public class Main {
 *
 */
 	public static void main(String[] args) {
-		Aleatorio aleatorio = new Aleatorio();
+		AleatorioBike aleatorio = new AleatorioBike();
 		aleatorio.loadBikeCSV(Paths.get("res/bike.csv"),
 				Paths.get("res/bike.bin"));
 		
