@@ -1,4 +1,4 @@
-package ut01.ejemplos.aleatorio;
+package ut01.ejemplos.aleatorio.nio;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
