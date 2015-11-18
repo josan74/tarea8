@@ -1,4 +1,4 @@
-package ut02;
+package ut02.ejemplo.SAX.discografica;
 
 import java.io.File;
 import javax.xml.parsers.*;
@@ -76,9 +76,9 @@ public class LeerXMLDiscografica {
 	}
 
 	public static void main(String[] args) {
-		leerXML1("Discografica.xml");
+		leerXML1("res/xml/Discografica.xml");
 
-		leerXML2("Discografica.xml");
+		leerXML2("res/xml/Discografica.xml");
 		
 
 	} // fin de main

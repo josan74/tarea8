@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Discografica>
+    <Disco>
+        <titulo>Nightfall in Middle-Earth</titulo>
+        <formato>CD</formato>
+        <autor>Blind Guardian</autor>
+    </Disco>
+    <Disco>
+        <titulo>The number of the beast</titulo>
+        <formato>CD</formato>
+        <autor>Iron Maiden</autor>
+    </Disco>
+    <Disco>
+        <titulo>Crash! Boom! Bang!</titulo>
+        <formato>MP3</formato>
+        <autor>Roxette</autor>
+    </Disco>
+    <Disco>
+        <titulo>Metallica</titulo>
+        <formato>CD</formato>
+        <autor>Metallica</autor>
+    </Disco>
+    <Disco>
+        <titulo>Ardi Larruz</titulo>
+        <formato>OGG</formato>
+        <autor>Latzen</autor>
+    </Disco>
+</Discografica>

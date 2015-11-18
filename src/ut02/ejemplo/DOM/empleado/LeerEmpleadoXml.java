@@ -1,4 +1,4 @@
-package ut02;
+package ut02.ejemplo.DOM.empleado;
 import java.io.File;
 import javax.xml.parsers.*;
 import org.w3c.dom.*;

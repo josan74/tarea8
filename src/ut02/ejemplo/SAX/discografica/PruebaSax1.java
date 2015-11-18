@@ -1,4 +1,4 @@
-package ut02;
+package ut02.ejemplo.SAX.discografica;
 import java.io.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;

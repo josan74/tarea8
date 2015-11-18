@@ -1,4 +1,4 @@
-package ut02;
+package ut02.ejemplo.SAX.discografica;
 
 
 public class Disco {

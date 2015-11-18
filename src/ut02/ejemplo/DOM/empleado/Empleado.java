@@ -1,4 +1,4 @@
-package ut02;
+package ut02.ejemplo.DOM.empleado;
 
 import java.io.Serializable;
 import java.util.ArrayList;

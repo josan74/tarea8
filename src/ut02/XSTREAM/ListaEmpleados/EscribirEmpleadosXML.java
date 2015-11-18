@@ -1,9 +1,11 @@
-package ut02;
+package ut02.XSTREAM.ListaEmpleados;
 
 import java.io.*;
 import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
+
+import ut02.ejemplo.DOM.empleado.Empleado;
 
 public class EscribirEmpleadosXML {
 

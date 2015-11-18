@@ -1,6 +1,8 @@
 
-package ut02;
+package ut02.ejemplo.SAX.discografica;
 import org.w3c.dom.*;
+
+import ut02.ejemplo.SAX.discografica.Disco.Formato;
 
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
@@ -48,7 +50,7 @@ public class CrearXMLDiscografica  {
 			
 			Source source = new DOMSource(document);
 			
-			Result result = new StreamResult(new java.io.File("Discografica.xml"));
+			Result result = new StreamResult(new java.io.File("res/xml/Discografica.xml"));
 			
 			Transformer t = TransformerFactory.newInstance().newTransformer();
 			
