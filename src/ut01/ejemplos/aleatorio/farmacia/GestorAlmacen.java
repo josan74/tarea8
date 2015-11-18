@@ -18,7 +18,7 @@ public class GestorAlmacen {
 		int posicion;
 		boolean result = true; // termina bien
 		posicion = (m.getCod() - 1) * Medicamento.TAM_REGISTRO;
-		// si el fichero existe, lo añado
+		// si el fichero existe, lo aï¿½ado
 				
 		try {
 			raf = new RandomAccessFile(fichero, "rw");
@@ -55,7 +55,7 @@ public class GestorAlmacen {
 
 	/**
 	 * Recibe un objeto Medicamento y lo guardar en un fichero de Acceso
-	 * aleatorio en una posición libre
+	 * aleatorio en una posiciï¿½n libre
 	 * 
 	 * @param m
 	 * @return Si lo hace correctamente devuelve true
@@ -65,7 +65,7 @@ public class GestorAlmacen {
 		int posicion;
 		boolean result = true; // termina bien
 		posicion = (m.getCod() - 1) * Medicamento.TAM_REGISTRO;
-		// si el fichero existe, lo añado
+		// si el fichero existe, lo aï¿½ado
 		if (fichero.exists()){
 		
 		try {
@@ -73,7 +73,7 @@ public class GestorAlmacen {
 
 			// escribo en el registro que le corresponde a m
 			raf.seek(posicion);
-			// comprobamos que está vacio
+			// comprobamos que estï¿½ vacio
 			if (raf.readInt()==0){
 			raf.seek(posicion);
 			raf.writeInt(m.getCod());
@@ -162,7 +162,7 @@ public class GestorAlmacen {
 	}
 	/**
 	 * Devuelve un medicamente con el codigo
-	 * Si no es válido devuelve null
+	 * Si no es vï¿½lido devuelve null
 	 * @param codigo
 	 * @return
 	 */
@@ -180,7 +180,7 @@ public class GestorAlmacen {
 		posicion = (codigo-1)*Medicamento.TAM_REGISTRO;
 		try {
 			raf = new RandomAccessFile(fichero, "r");
-			// si es un código de registro de valido...
+			// si es un cï¿½digo de registro de valido...
 			if (posicion< raf.length() && posicion>=0) {
 				// nos posicionamos
 				raf.seek(posicion);
@@ -223,7 +223,7 @@ public class GestorAlmacen {
 	
 	/**
 	 * Recibe un objeto Medicamento y lo guardar en un fichero de Acceso
-	 * aleatorio en una posición libre
+	 * aleatorio en una posiciï¿½n libre
 	 * 
 	 * @param m
 	 * @return Si lo hace correctamente devuelve true
@@ -233,7 +233,7 @@ public class GestorAlmacen {
 		int posicion;
 		boolean result = true; // termina bien
 		posicion = (codigo - 1) * Medicamento.TAM_REGISTRO;
-		// si el fichero existe, lo añado
+		// si el fichero existe, lo aï¿½ado
 		
 		
 		try {

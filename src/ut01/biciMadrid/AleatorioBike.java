@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class Aleatorio implements InterfaceRandom {
+public class AleatorioBike implements InterfaceRandomBike {
 
 	final static int RECORD_BIKE = 10; // dos int (4) y dos boolean (1)
 	final static int MAX_BIKES = 500; // dos int y dos boolean
@@ -51,11 +51,7 @@ public class Aleatorio implements InterfaceRandom {
 		return bike;
 	}
 
-	@Override
-	public void loadUserCSV(Path csvUserFile, Path userRandomFile) {
-
-	}
-
+	
 	@Override
 	public Bike getBike(int key, Path bikeRandomFile) {
 		// TODO Auto-generated method stub
@@ -129,46 +125,6 @@ public class Aleatorio implements InterfaceRandom {
 		return bicis;
 	}
 
-	@Override
-	public User getUser(String dni, Path userRandomFile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void saveUser(User user, Path userRandomFile) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public User deleteUser(String dni, Path userRandomFile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User modifyUser(String dni, Path userRandomFile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User addCredit(String dni, double credit, Path userRandomFile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User removeCredit(String dni, double credit, Path userRandomFile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<User> getAllUsers(Path userRandomFile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

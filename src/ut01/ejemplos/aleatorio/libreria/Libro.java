@@ -1,7 +1,11 @@
 package ut01.ejemplos.aleatorio.libreria;
 
-public class Stock {
+import java.io.Serializable;
+
+public class Libro implements Serializable{
 	
+	
+	private static final long serialVersionUID = 1L;
 	private int bookId ;
 	private String title ;
 	private int fkAuthor;
@@ -9,7 +13,9 @@ public class Stock {
 	private int fkPublisher;
 	private int stock;
 	
-	Stock(int bookId , String title, int fkAuthor, int year, int fkPublisher, int stock){
+	Libro(){}
+	
+	Libro(int bookId , String title, int fkAuthor, int year, int fkPublisher, int stock){
 		
 	this.bookId = bookId;
 	this.title =  title;
@@ -56,6 +62,12 @@ public class Stock {
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	@Override
+	public String toString() {
+		return "Stock [bookId=" + bookId + ", title=" + title + ", fkAuthor=" + fkAuthor + ", year=" + year
+				+ ", fkPublisher=" + fkPublisher + ", stock=" + stock + "]";
 	}
 	
 	
