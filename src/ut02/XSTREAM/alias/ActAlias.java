@@ -1,4 +1,4 @@
-package ut02.ejemplo.XSTREAM.alias;
+package ut02.XSTREAM.alias;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
