@@ -1,80 +1,75 @@
 package ut02.ejemplo.DOM.empleado;
+
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 import java.io.*;
+import java.net.URI;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class CrearEmpleadoXML {
-	
-	// Inserción de los datos del empleado
-	static void CrearElemento(String datoEmple, String valor,Element raiz, Document document){
+
+	private static final String XML_FILE = "res/xml/empleado.xml";
+	private static final String RANDOM_FILE = "res/aleatorio/employee.bin";
+
+	// Inserciï¿½n de los datos del empleado
+	static void CrearElemento(String datoEmple, String valor, Element raiz, Document document) {
 		Element elem = document.createElement(datoEmple); // creamos hijo
-		Text text = document.createTextNode(valor); //damos valor
-		raiz.appendChild(elem); //pegamos el elemento hijo a la raíz
+		Text text = document.createTextNode(valor); // damos valor
+		raiz.appendChild(elem); // pegamos el elemento hijo a la raï¿½z
 		elem.appendChild(text); // pegamos el valor
 	}
 
-	public static void main(String[] args) throws IOException{
-		File fichero = new File ("D:/ficheros/Employee.dat");
-		// declara el fichero de acceso aleatorio
-		RandomAccessFile file = new RandomAccessFile(fichero, "r");
-		//variables para leer los datos
-		int id, dep, posicion=0;
-		Double salario;
-		char nombre[] = new char[10], aux;
-		
+	public static void main(String[] args) throws IOException {
+		ArrayList<Empleado> empleados = RandomEmpleado.getAll(Paths.get(RANDOM_FILE));
+
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		try{
+		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			
+
 			DOMImplementation implementation = builder.getDOMImplementation();
-			Document document = implementation.createDocument(null, "Empleados",null);
-			document.setXmlVersion("1.0"); //asignamos la versión de nuestro XML
-			
-			do{ // recorremos los arrays
-				file.seek(posicion); //nos posición 
-				id=file.readInt(); //leemos el id de empleado
-				for (int i = 0; i < nombre.length; i++){
-					aux = file.readChar();//recorremos uno a uno los caracteres del apellido
-					if ((int)aux!=0) nombre[i] = aux;
-					else nombre[i]=' '; //los vamos guardando en el array
-					//System.out.println((int)aux);
-				}	
-				String nombreS = new String(nombre); // convertimos a String el array
-				dep=file.readInt();//obtenemos el dep
-				salario=file.readDouble(); //obtenemos el salario
-				
-				if(id>0){ //validamos a partir de 1
-					
-					Element raiz = document.createElement("empleado"); // nodo empleado
-					document.getDocumentElement().appendChild(raiz); // lo pegamos a la raíz del documento
-					
-					CrearElemento("id",Integer.toString(id), raiz, document);// Añadir ID
-					CrearElemento("nombre",nombreS.trim(),raiz, document);// Añadir apellido
-					CrearElemento("dep",Integer.toString(dep),raiz,document); //Añadir departamento
-					CrearElemento("salario",Double.toString(salario), raiz, document); // Añadir salario
-				}
-				
-				posicion = posicion + 36; // vamos al siguiente registro
-				// Si he recorrido todos los bytes salimos del while
-				} while (file.getFilePointer()!=file.length());
-			
+			Document document = implementation.createDocument(null, "Empleados", null);
+			document.setXmlVersion("1.0"); // asignamos la versiï¿½n de nuestro
+											// XML
+
+			for (Empleado e : empleados) {
+
+				Element raiz = document.createElement("empleado"); // nodo
+																	// empleado
+				document.getDocumentElement().appendChild(raiz); // lo pegamos a
+
+				CrearElemento("id", Integer.toString(e.getId()), raiz, document);// Aï¿½adir
+																					// ID
+				CrearElemento("nombre", e.getNombre().trim(), raiz, document);// Aï¿½adir
+																				// apellido
+				CrearElemento("dep", Integer.toString(e.getDep()), raiz, document); // Aï¿½adir
+																					// departamento
+				CrearElemento("salario", Double.toString(e.getSalario()), raiz, document); // Aï¿½adir
+																							// salario
+			}
+
 			Source source = new DOMSource(document);
-			
-			Result result = new StreamResult(new java.io.File(".\\src\\uem\\ficheros\\Empleados.xml"));
-			
+
+			Result result = new StreamResult(new java.io.File(XML_FILE));
+
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			
-			transformer.transform(source,  result);		
-			
+
+			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
 			Result console = new StreamResult(System.out);
 			transformer.transform(source, console);
-			
-		} catch(Exception e) {System.err.println("Error: "+e);}
-		file.close(); //cerramos el fichero
+
+		} catch (ParserConfigurationException e1) {
+			System.out.println("Error al crear el parser");
+		} catch (TransformerException e1) {
+			System.out.println("Error al crear el transformer");
+
+		}
 	}
 
 }
-

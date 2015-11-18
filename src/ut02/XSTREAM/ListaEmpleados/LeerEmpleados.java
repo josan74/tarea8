@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 
-import ut02.ejemplo.DOM.empleado.Empleado;
-
 public class LeerEmpleados {
 
 	public static List<Empleado> leerXML() throws IOException {
@@ -20,7 +18,7 @@ public class LeerEmpleados {
 
 		ListaEmpleados listadoTodas = (ListaEmpleados) xstream
 				.fromXML(new FileInputStream("empleados.xml"));
-		System.out.println("Nœmero de Empleados: "
+		System.out.println("Nï¿½mero de Empleados: "
 				+ listadoTodas.getListaEmpleados().size());
 
 		List<Empleado> listaEmpleados = new ArrayList<Empleado>();

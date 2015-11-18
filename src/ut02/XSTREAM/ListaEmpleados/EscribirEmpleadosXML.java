@@ -5,15 +5,13 @@ import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
 
-import ut02.ejemplo.DOM.empleado.Empleado;
-
 public class EscribirEmpleadosXML {
 
 	public static void crearXML(ListaEmpleados listaper) throws IOException,
 			ClassNotFoundException {
 
 		System.out
-				.println("Comienza el proceso de creaci—n del fichero a XML...");
+				.println("Comienza el proceso de creacion del fichero a XML...");
 
 		try {
 
@@ -52,7 +50,7 @@ public class EscribirEmpleadosXML {
 	        	direcciones.add("calle sombrereria");
 	        	telefonos = new ArrayList<Integer>();
 	        	telefonos.add(655438490);
-	        	listaper.add(new Empleado("Maria","Fern‡ndez","60300000X",
+	        	listaper.add(new Empleado("Maria","Fernï¿½ndez","60300000X",
 	        			"1/1/1985",2,direcciones, 910575464,telefonos));
 	        	
 	        	try {
