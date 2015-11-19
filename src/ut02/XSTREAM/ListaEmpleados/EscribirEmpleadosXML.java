@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class EscribirEmpleadosXML {
 
@@ -15,7 +17,7 @@ public class EscribirEmpleadosXML {
 
 		try {
 
-			XStream xstream = new XStream();
+			XStream xstream = new XStream(new DomDriver());
 
 			// cambiar de nombre a las etiquetas XML
 			xstream.alias("ListaEmpleados", ListaEmpleados.class);
@@ -23,7 +25,7 @@ public class EscribirEmpleadosXML {
 			// quitar etiqueta lista (Atributo de la clase ListaEmpleados)
 			xstream.addImplicitCollection(ListaEmpleados.class, "lista");
 			// Insertar los objetos en XML
-			xstream.toXML(listaper, new FileOutputStream("empleado.xml"));
+			xstream.toXML(listaper, new FileOutputStream("res/xml/empleado.xml"));
 			System.out.println("Creado fichero XML....");
 
 		} catch (Exception e) {

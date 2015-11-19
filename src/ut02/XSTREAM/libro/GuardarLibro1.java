@@ -24,11 +24,11 @@ public class GuardarLibro1 {
 		
 		//Mucho cuidado con pasar un nombre de directorio existente a new File. Si no existe, obtendremos NullPointerException
 		//XStream no preparado para java.nio.file.Path
-		PersistenceStrategy strategy = new FilePersistenceStrategy(new File("res/xml/"));
+		PersistenceStrategy strategy = new 
+				FilePersistenceStrategy(new File("res/xml/"));
 		// creates the list:
 		XmlArrayList lista = new XmlArrayList(strategy);
-		
-		//Añadimos un Libro
+		//Aï¿½adimos un Libro
 		Libro libro1=new Libro();
 		libro1.setAutor("Stallman");
 		libro1.setCopias(3);
@@ -36,7 +36,18 @@ public class GuardarLibro1 {
 		libro1.setIsbn(2345);
 		libro1.setPaginas(43);
 		libro1.setTitulo("milibro");
+		
+		Libro libro2=new Libro();
+		libro2.setAutor("Tessier");
+		libro2.setCopias(3);
+		libro2.setEditorial("ies");
+		libro2.setIsbn(2345);
+		libro2.setPaginas(43);
+		libro2.setTitulo("miotrolibro");
+		
 		lista.add(libro1);		
+		lista.add(libro2);		
+
 		 
 
 	}
