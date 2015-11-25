@@ -1,0 +1,17 @@
+{
+	 "emp_no": 1,
+	 "name": "Pepe",
+     "lastname": "Fernández",
+     "regis_date":"01/01/2014",
+	 "job":{
+			"id":"1",      
+             "commission":"100"
+          },
+     "department":"2",
+     "salary": [
+		{ "date":"1/11/2014" , "wage":"1000" }, 
+		{ "date":"1/10/2014" , "wage":"1300" }
+	]
+        
+}
+

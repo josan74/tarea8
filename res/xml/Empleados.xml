@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Empleados>
+    <empleado>
+        <emp_no>4</emp_no>
+        <nombre>Juan</nombre>
+        <apellido>Juan</apellido>
+        <job>20</job>
+        <fecha>Juan</fecha>
+        <salario>5000.0</salario>
+        <comision>5000.0</comision>
+        <dep>20</dep>
+    </empleado>
+    <empleado>
+        <emp_no>100</emp_no>
+        <nombre>Carlos</nombre>
+        <apellido>Carlos</apellido>
+        <job>10</job>
+        <fecha>Carlos</fecha>
+        <salario>800.0</salario>
+        <comision>800.0</comision>
+        <dep>10</dep>
+    </empleado>
+</Empleados>
