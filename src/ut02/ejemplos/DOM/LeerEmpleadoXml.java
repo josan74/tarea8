@@ -1,4 +1,4 @@
-package ut02.ejemplo.DOM.empleado;
+package ut02.ejemplos.DOM;
 import java.io.File;
 import javax.xml.parsers.*;
 import org.w3c.dom.*;
@@ -10,7 +10,7 @@ public class LeerEmpleadoXml {
 		
 		try{
 			DocumentBuilder builder = factory.newDocumentBuilder();			
-			Document document = builder.parse(new File (".\\src\\uem\\ficheros\\Empleados.xml"));			
+			Document document = builder.parse(new File ("res/xml/Empleados.xml"));			
 			document.getDocumentElement().normalize();
 			
 			System.out.println("Elemento raiz: "+
@@ -34,7 +34,7 @@ public class LeerEmpleadoXml {
 		} catch (Exception e) {e.printStackTrace();}
 	} // fin de main
 		
-	//obtener información de un nodo
+	//obtener informaciï¿½n de un nodo
 	private static String getNodo(String etiqueta, Element elem)
 	{
 		NodeList nodo = elem.getElementsByTagName(etiqueta).item(0).getChildNodes();

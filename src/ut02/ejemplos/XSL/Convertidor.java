@@ -1,4 +1,4 @@
-package ut02.ejemplo.xsl;
+package ut02.ejemplos.XSL;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 import java.io.*;
@@ -9,7 +9,7 @@ public class Convertidor {
 			 FileOutputStream os = new FileOutputStream(docHMTL); // crear fichero HTML
              Source estilos = new StreamSource(docXLS); //fuente XLS
              Source datos = new StreamSource(docXML); //fuente XML
-             Result result = new StreamResult(os); // resultado de la transformaci—n
+             Result result = new StreamResult(os); // resultado de la transformaciï¿½n
              try{
                      
                      Transformer transformer =
@@ -23,9 +23,9 @@ public class Convertidor {
 
 
 	        public static void main(String[] args)  {
-	                String hojaEstilo = "./xml/alumnosplantilla.xsl";
-	                String datosAlumnos = "./xml/alumnos.xml";
-	                File pagHTML = new File ("./html/mipagina.html");
+	                String hojaEstilo = "res/xml/alumnosplantilla.xsl";
+	                String datosAlumnos = "res/xml/alumnos.xml";
+	                File pagHTML = new File ("res/html/mipagina.html");
 	                try{
 	                	convertidor(datosAlumnos,hojaEstilo,pagHTML);
 	                }catch (IOException e) {}

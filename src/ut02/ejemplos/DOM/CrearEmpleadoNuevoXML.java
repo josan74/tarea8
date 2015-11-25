@@ -1,4 +1,4 @@
-package ut02.ejemplo.DOM.empleado;
+package ut02.ejemplos.DOM;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.*;
@@ -11,11 +11,11 @@ import java.util.Date;
 
 public class CrearEmpleadoNuevoXML {
 	
-	// Inserción de los datos del empleado
+	// Inserciï¿½n de los datos del empleado
 	static void CrearElemento(String datoEmple, String valor,Element raiz, Document document){
 		Element elem = document.createElement(datoEmple); // creamos hijo
 		Text text = document.createTextNode(valor); //damos valor
-		raiz.appendChild(elem); //pegamos el elemento hijo a la raíz
+		raiz.appendChild(elem); //pegamos el elemento hijo a la raï¿½z
 		elem.appendChild(text); // pegamos el valor
 	}
 
@@ -34,10 +34,10 @@ public class CrearEmpleadoNuevoXML {
 			
 			DOMImplementation implementation = builder.getDOMImplementation();
 			Document document = implementation.createDocument(null, "Empleados",null);
-			document.setXmlVersion("1.0"); //asignamos la versión de nuestro XML
+			document.setXmlVersion("1.0"); //asignamos la versiï¿½n de nuestro XML
 			
 			do{ // recorremos los arrays
-				file.seek(posicion); //nos posición 
+				file.seek(posicion); //nos posiciï¿½n 
 				id=file.readInt(); //leemos el id de empleado
 				for (int i = 0; i < nombre.length; i++){
 					aux = file.readChar();//recorremos uno a uno los caracteres del apellido
@@ -52,17 +52,17 @@ public class CrearEmpleadoNuevoXML {
 				if(id>0){ //validamos a partir de 1
 					
 					Element raiz = document.createElement("empleado"); // nodo empleado
-					document.getDocumentElement().appendChild(raiz); // lo pegamos a la raíz del documento
+					document.getDocumentElement().appendChild(raiz); // lo pegamos a la raï¿½z del documento
 					
 									
-					CrearElemento("emp_no",Integer.toString(id), raiz, document);// Añadir ID
-					CrearElemento("nombre",nombreS.trim(),raiz, document);// Añadir apellido
-					CrearElemento("apellido",nombreS.trim(),raiz, document);// Añadir apellido
-					CrearElemento("job",Integer.toString(dep),raiz,document); //Añadir departamento
-					CrearElemento("fecha",nombreS.trim(),raiz, document);// Añadir apellido					
-					CrearElemento("salario",Double.toString(salario), raiz, document); // Añadir salario
-					CrearElemento("comision",Double.toString(salario), raiz, document); // Añadir salario
-					CrearElemento("dep",Integer.toString(dep),raiz,document); //Añadir departamento
+					CrearElemento("emp_no",Integer.toString(id), raiz, document);// Aï¿½adir ID
+					CrearElemento("nombre",nombreS.trim(),raiz, document);// Aï¿½adir apellido
+					CrearElemento("apellido",nombreS.trim(),raiz, document);// Aï¿½adir apellido
+					CrearElemento("job",Integer.toString(dep),raiz,document); //Aï¿½adir departamento
+					CrearElemento("fecha",nombreS.trim(),raiz, document);// Aï¿½adir apellido					
+					CrearElemento("salario",Double.toString(salario), raiz, document); // Aï¿½adir salario
+					CrearElemento("comision",Double.toString(salario), raiz, document); // Aï¿½adir salario
+					CrearElemento("dep",Integer.toString(dep),raiz,document); //Aï¿½adir departamento
 				}
 				
 				posicion = posicion + 36; // vamos al siguiente registro
