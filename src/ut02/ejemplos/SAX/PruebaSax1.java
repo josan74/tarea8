@@ -1,4 +1,4 @@
-package ut02.ejemplo.SAX.discografica;
+package ut02.ejemplos.SAX;
 import java.io.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -17,7 +17,7 @@ public class PruebaSax1 {
 			GestionContenido gestor = new GestionContenido();
 			procesadorXML.setContentHandler(gestor);
 			
-			InputSource fileXML = new InputSource("Discografica.xml");
+			InputSource fileXML = new InputSource("res/xml/Discografica.xml");
 			
 			procesadorXML.parse(fileXML);
 			
@@ -46,7 +46,7 @@ class GestionContenido extends DefaultHandler {
 	public void characters(char[] ch, int inicio, int longitud)	
 			throws SAXException{
 		String car = new String(ch, inicio, longitud);
-		car = car.replaceAll("[\t\n]",""); // quitar saltos de línea
+		car = car.replaceAll("[\t\n]",""); // quitar saltos de lï¿½nea
 		System.out.println("\tCaracteres : "+car);
 	}
 } // fin GestionContenido
