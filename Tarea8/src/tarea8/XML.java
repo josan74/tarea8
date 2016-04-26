@@ -5,6 +5,7 @@
  */
 package tarea8;
 
+import java.io.File;
 import java.util.ArrayList;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
@@ -19,8 +20,95 @@ import javax.xml.transform.stream.*;
 public class XML {
 
     private static final String XML_FILE = "clientes.xml";
+    
+    public String leerXML(){
+        
+        return leerXML(XML_FILE);
+    }
+    
+    public String leerXML(String ruta){
+        StringBuffer sb = new StringBuffer();
+        	DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		
+		try{
+			DocumentBuilder builder = factory.newDocumentBuilder();			
+			Document document = builder.parse(new File (ruta));			
+			document.getDocumentElement().normalize();
+			
+			System.out.println("Elemento raiz: "+
+					document.getDocumentElement().getNodeName());
+			
+			//crea una lista con todos los nodos de cliente			
+			NodeList clientes = document.getElementsByTagName("cliente");
+			
+			//recorrer la lista
+			for (int i = 0; i < clientes.getLength(); i++){
+				Node cliente = clientes.item(i); // obtener u nnodo
+				if (cliente.getNodeType() == Node.ELEMENT_NODE) { // tipo de nodo
+					Element elemento = (Element) cliente; // obtener los elementos del nodo
+					System.out.println("NCliente: "+ getNodo("dni", elemento));
+                                        sb.append("NCliente: ");
+                                        sb.append(getNodo("dni",elemento));                                      
+                                        sb.append("\n");
+					System.out.println("Apellido: " + getNodo("nombre", elemento));
+                                         sb.append("Apellido: ");
+                                         sb.append(getNodo("nombre", elemento));
+                                         sb.append("\n");
+					System.out.println("Departamento: " + getNodo("apellidos", elemento));
+                                         sb.append("Departamento: ");
+                                         sb.append(getNodo("apellidos",elemento));
+                                          sb.append("\n");
+                                        //crea una lista con todos los nodos de cliente	
+                                        //NodeList telefonos = ;
+                                        
+                                        //Todo añadir telefonos emails
+                     /*
+                                        NodeList telefonos = elemento.getElementsByTagName("telefonos");
+                                        
+                                        if (telefonos.getLength()>0){
+                                            System.out.println("Telefonos");
+                                            
+                                                Node nodoTelefono = telefonos.item(0); // obtener u nnodo
+                                                Element elementoTelefono = (Element) nodoTelefono;
+                                                NodeList listaNodoTelefonos = elementoTelefono.getElementsByTagName("telefono").item(0).getChildNodes();
+                                                for (int j = 0; j < telefonos.getLength(); j++){
+                                                    Node valorTelefono = (Node) listaNodoTelefonos.item(0);
+                                                    System.out.println("telefono: "+ valorTelefono.getNodeValue());
+                                             }
+                                            
+                                        } */
+                                         
+                                         
+					
 
-    public void crearXML(ArrayList<Cliente> cliente) {
+				}
+			}
+		} catch (Exception e) {e.printStackTrace();}
+                
+                return sb.toString();
+	} // fin de main
+		
+	//obtener informaci�n de un nodo
+	private static String getNodo(String etiqueta, Element elem)
+	{
+            
+		NodeList nodo = elem.getElementsByTagName(etiqueta).item(0).getChildNodes();
+		Node valornodo = (Node) nodo.item(0);
+                if (valornodo == null){
+                    System.out.println("Error al obtener el nodo ");
+                    return "";
+                }
+		return valornodo.getNodeValue(); // devuelve el valor del nodo
+          
+	}
+    
+
+    public void crearXML(ArrayList<Cliente> clientes) {
+
+        crearXML(clientes, XML_FILE);
+    }
+
+    public void crearXML(ArrayList<Cliente> cliente, String rutaArchivoXML) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
         try {
@@ -55,7 +143,7 @@ public class XML {
 
             //guardamos el XML
             Source source = new DOMSource(document);
-            Result result = new StreamResult(new java.io.File("clientes.xml"));
+            Result result = new StreamResult(new java.io.File(rutaArchivoXML));
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(source, result);
             transformer.setOutputProperty(OutputKeys.METHOD, "xml");

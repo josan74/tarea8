@@ -104,8 +104,7 @@ public class Interfaz extends javax.swing.JFrame {
         //System.out.println(cliente);
         clientes.add(cliente);
         xml.crearXML(clientes);
-        
-        muestraDatos.setText("esto es\n una prueba");
+        muestraDatos.setText(xml.leerXML());
               
         
     }//GEN-LAST:event_procesarActionPerformed

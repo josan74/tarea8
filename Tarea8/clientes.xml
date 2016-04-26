@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Clientes><cliente><dni/><nombre/><apellidos/></cliente></Clientes>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Clientes><cliente><dni>71437136X</dni><nombre>carlos</nombre><apellidos>fernández</apellidos><telefonos><telefono>674528528</telefono><telefono>915434543</telefono><telefono>987645676</telefono></telefonos><emails><email>fernandez.carlos@gmail.com</email></emails></cliente></Clientes>
