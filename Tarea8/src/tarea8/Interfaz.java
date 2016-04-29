@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 package tarea8;
+
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
+
 /**
  *
  * @author José Ángel Andrés Castillejo
@@ -17,8 +22,7 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
-        
-        
+
     }
 
     /**
@@ -35,6 +39,7 @@ public class Interfaz extends javax.swing.JFrame {
         procesar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         muestraDatos = new javax.swing.JTextPane();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +51,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        procesar.setText("Procesar datos");
+        procesar.setText("Añadir cliente");
         procesar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 procesarActionPerformed(evt);
@@ -54,6 +59,13 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         jScrollPane1.setViewportView(muestraDatos);
+
+        jButton1.setText("Abrir Fichero");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,8 +80,10 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(datos)
                             .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53)
+                        .addComponent(procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -80,48 +94,69 @@ public class Interfaz extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(procesar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //DATOS
     private void datosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datosActionPerformed
-        
+
     }//GEN-LAST:event_datosActionPerformed
 
     private void procesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesarActionPerformed
 
-        ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Cliente> clientes;
         Patrones patrones = new Patrones();
         XML xml = new XML();
-        Cliente cliente=patrones.procesarDatos(datos.getText());
-        
-       
-        //System.out.println(cliente);
-        clientes.add(cliente);
+
+        // leemos el xml
+        clientes = xml.leerClientesXML();
+        Cliente cliente = patrones.procesarDatos(datos.getText());
+        if (!cliente.getnCliente().equals("")) {
+            clientes.add(cliente);
+        }
         xml.crearXML(clientes);
+
         muestraDatos.setText(xml.leerXML());
-              
-        
+
+
     }//GEN-LAST:event_procesarActionPerformed
- 
-  
-    
-    
-    
-    
-    
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            //This is where a real application would open the file.
+            System.out.println("Abriendo el fichero");
+            ArrayList<Cliente> clientes = Ficheros.leerFichero(file);
+
+            Patrones patrones = new Patrones();
+            XML xml = new XML();
+            xml.crearXML(clientes);
+
+            muestraDatos.setText(xml.leerXML());
+
+        } else {
+            System.out.println("cancelado");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField datos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane muestraDatos;
     private javax.swing.JButton procesar;

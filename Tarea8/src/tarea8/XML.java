@@ -25,7 +25,89 @@ public class XML {
 
         return leerXML(XML_FILE);
     }
+    
+    public ArrayList<Cliente> leerClientesXML() {
 
+        return leerClientesXML(XML_FILE);
+    }
+
+    public ArrayList<Cliente> leerClientesXML(String ruta) {
+        String sDNI="", sNombre="", sApellido="", sTelefono, sEmail;
+        Cliente cliente;
+        ArrayList<Cliente> clientes = new ArrayList<>(); 
+        ArrayList<String> telefonos = new ArrayList<>();
+        ArrayList<String> emails = new ArrayList<>();
+
+        StringBuffer sb = new StringBuffer();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(new File(ruta));
+            document.getDocumentElement().normalize();
+
+            System.out.println("Elemento raiz: "
+                    + document.getDocumentElement().getNodeName());
+
+            //crea una lista con todos los nodos de cliente			
+            NodeList nlClientes = document.getElementsByTagName("cliente");
+
+            //recorrer la lista
+            for (int i = 0; i < nlClientes.getLength(); i++) {
+                if (nlClientes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                    Element eCliente = (Element) nlClientes.item(i); // obtener u nnodo
+                    sDNI = eCliente.getElementsByTagName("dni").item(0).getTextContent();                                  
+                    sNombre = eCliente.getElementsByTagName("nombre").item(0).getTextContent();
+                    sApellido = eCliente.getElementsByTagName("apellidos").item(0).getTextContent();
+                    
+
+                    if (eCliente.getElementsByTagName("telefono") != null && eCliente.getElementsByTagName("telefono").getLength() > 0) {
+                        NodeList nlTelefonos = eCliente.getElementsByTagName("telefono");
+
+                        System.out.format("Telefonos:%d ", nlTelefonos.getLength());
+                        sb.append("Telefonos: \n");
+                        for (int j = 0; j < nlTelefonos.getLength(); j++) {
+
+                            if (nlTelefonos.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                                Element telefono = (Element) nlTelefonos.item(j); // obtener u nnodo
+                                sTelefono = telefono.getTextContent();
+                              telefonos.add(sTelefono);
+                               
+                            }
+                        }
+                    }
+
+                    if (eCliente.getElementsByTagName("email") != null && eCliente.getElementsByTagName("email").getLength() > 0) {
+
+                        NodeList nlEmails = eCliente.getElementsByTagName("email");
+
+                        System.out.format("Emails:%d ", nlEmails.getLength());
+                        sb.append("Emails: \n");
+                        for (int j = 0; j < nlEmails.getLength(); j++) {
+
+                            if (nlEmails.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                                Element email = (Element) nlEmails.item(j); // obtener u nnodo
+                                sEmail = email.getTextContent();
+                                emails.add(sEmail);
+                               
+                            }
+                        }
+                    }
+                }
+                
+                if(!sDNI.equals(""))
+                    cliente = new Cliente(sDNI,sNombre,sApellido,telefonos,emails);
+            }
+            
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return clientes;
+    } // fin de main
+    
     /*
 71437136X,"carlos","fernández", 674528528,915434543,987645676, fernandez.carlos@gmail.com
      */
@@ -72,7 +154,7 @@ public class XML {
                         sb.append("Telefonos: \n");
                         for (int j = 0; j < nlTelefonos.getLength(); j++) {
 
-                            if (nlTelefonos.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                            if (nlTelefonos.item(j).getNodeType() == Node.ELEMENT_NODE) {
                                 Element telefono = (Element) nlTelefonos.item(j); // obtener u nnodo
                                 sTelefono = telefono.getTextContent();
                                 System.out.println(sTelefono);
@@ -83,15 +165,15 @@ public class XML {
                         }
                     }
 
-                    if (cliente.getElementsByTagName("emails") != null && cliente.getElementsByTagName("emails").getLength() > 0) {
+                    if (cliente.getElementsByTagName("email") != null && cliente.getElementsByTagName("email").getLength() > 0) {
 
-                        NodeList nlEmails = cliente.getElementsByTagName("emails").item(0).getChildNodes();
+                        NodeList nlEmails = cliente.getElementsByTagName("email");
 
                         System.out.format("Emails:%d ", nlEmails.getLength());
                         sb.append("Emails: \n");
                         for (int j = 0; j < nlEmails.getLength(); j++) {
 
-                            if (nlEmails.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                            if (nlEmails.item(j).getNodeType() == Node.ELEMENT_NODE) {
                                 Element email = (Element) nlEmails.item(j); // obtener u nnodo
                                 sEmail = email.getTextContent();
                                 System.out.println(sEmail);
